@@ -1,28 +1,28 @@
 const container = document.querySelector(".container");
+const searchDiv = document.forms.searchForm;
+const searchValue = searchDiv.searchMovies;
+const searchBtn = document.querySelector(".search-btn");
 
-const getMovies = (_) => {
+const getMovies = (searchQuery) => {
   const apiKey = `ad9f02ffebc5b31308852e1de341f307`;
   const endPoint = `https://api.themoviedb.org`;
-  const searchQuery = "batman";
+  const imgPath = "https://image.tmdb.org/t/p/w500";
   const url = `${endPoint}/3/search/movie?api_key=${apiKey}&query=${searchQuery}`;
 
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       let markup = ``;
       const movieData = data.results;
       movieData.forEach((movie) => {
         markup += `
-        
-        
         <div class="movie__info">
 
-        <img src='https://image.tmdb.org/t/p/w500${movie.poster_path}' alt="logo">
+        <img src='${imgPath}${movie.poster_path}' alt="logo">
         <h3>${movie.original_title}</h3>
-        <p>${movie.release_date}</p>
-        <p>${movie.vote_average} / ${movie.vote_count}</p>
-        <p>${movie.overview}</p>
+        <p> <span>Release Date:</span> ${movie.release_date}</p>
+        <p><span>⭐</span> ${movie.vote_average} / ${movie.vote_count}</p>
+        <p> <span> synopsis: </span> ${movie.overview}</p>
       </div>
         
         `;
@@ -30,4 +30,30 @@ const getMovies = (_) => {
       container.innerHTML = markup;
     });
 };
-getMovies();
+
+const movieKeyWords = [
+  "batman",
+  "superman",
+  "naruto",
+  "one piece",
+  "ninja",
+  "horror",
+  "action",
+  "fight",
+  1,
+  7,
+  3,
+];
+const getKeywords = (_) => {
+  const random = Math.floor(Math.random() * movieKeyWords.length);
+  return movieKeyWords[random];
+};
+console.log(getKeywords());
+getMovies(getKeywords());
+searchValue.focus();
+searchDiv.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (e.target.matches(".search-btn")) {
+    getMovies(searchValue.value);
+  }
+});
