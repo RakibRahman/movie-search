@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  border: 1px solid red;
+  padding: 5px;
+  width: 960px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.movie__info {
+  display: grid;
+  place-items: center;
+  width: 300px;
+  padding: 2px;
+}
+
+.movie__info img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+/*# sourceMappingURL=style.css.map */
