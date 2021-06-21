@@ -55,5 +55,6 @@ searchDiv.addEventListener("click", (e) => {
   e.preventDefault();
   if (e.target.matches(".search-btn")) {
     getMovies(searchValue.value);
+    window.scrollTo(0, 0);
   }
 });
