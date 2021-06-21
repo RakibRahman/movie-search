@@ -2,6 +2,7 @@ const container = document.querySelector(".container");
 const searchDiv = document.forms.searchForm;
 const searchValue = searchDiv.searchMovies;
 const searchBtn = document.querySelector(".search-btn");
+const topBtn = document.querySelector("#top-btn");
 
 const getMovies = (searchQuery) => {
   const apiKey = `ad9f02ffebc5b31308852e1de341f307`;
@@ -17,9 +18,8 @@ const getMovies = (searchQuery) => {
       movieData.forEach((movie) => {
         markup += `
         <div class="movie__info">
-
         <img src='${imgPath}${movie.poster_path}' alt="logo">
-        <h3>${movie.original_title}</h3>
+        <h2>${movie.original_title}</h2>
         <p> <span>Release Date:</span> ${movie.release_date}</p>
         <p><span>⭐</span> ${movie.vote_average} / ${movie.vote_count}</p>
         <p> <span> synopsis: </span> ${movie.overview}</p>
@@ -57,4 +57,7 @@ searchDiv.addEventListener("click", (e) => {
     getMovies(searchValue.value);
     window.scrollTo(0, 0);
   }
+});
+topBtn.addEventListener("click", (_) => {
+  window.scrollTo(0, 0);
 });
